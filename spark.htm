@@ -34,7 +34,7 @@
 		
 		let executorMemory = totalCacheSize/$("#num-executors").val();
 		$("#executor-memory").html(executorMemory);
-		$("#nodeMemory").html(executorMemory + $("#executor-memoryOverhead").val()*($("#num-executors").val()/$("#numNodes").val()));
+		$("#nodeMemory").html((executorMemory + $("#executor-memoryOverhead").val())*($("#num-executors").val()/$("#numNodes").val()));
 	};
 	$("input").change(function() {
 		calc();

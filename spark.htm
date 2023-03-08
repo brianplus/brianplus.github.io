@@ -11,10 +11,12 @@
 	<hr>
 		<table>
 		<tr><td align="right" width="300"> numNodes: </td><td> <input id="numNodes" value="12"> </td><td></td></tr>
+		<tr><td align="right" width="300"> nodemanager.resource.memory-mb: </td><td> <input id="nodemanager-resource-memory-gb" value="300"> </td><td> GB, <span id="nodemanager-resource-memory-mb" ></span> MB</td></tr>
+		
 		<tr><td align="right" width="300"> --num-executors: </td><td> <input id="num-executors" value="800"> </td><td></td></tr>
 		<tr><td align="right" width="300"> executor.memoryOverhead: </td><td> <input id="executor-memoryOverhead" value="2"> </td><td>GB</td></tr>
-		<tr><td align="right" width="300"> --executor-memory: </td><td> <span id="executor-memory"  style="background-color: #EEEEEE"></span> </td> <td> GB, Formula: totalCacheSize/num-executors</td></tr>
-		<tr><td align="right" width="300"> nodeMemory: </td><td> <span id="nodeMemory"  style="background-color: #EEEEEE"></span> </td> <td> GB, Formula: (--executor-memory + executor.memoryOverhead) * ((--num-executors)/numNodes)</td></tr>
+		<tr><td align="right" width="300"> --executor-memory: </td><td> <span id="executor-memory"  style="background-color: #EEEEEE"></span> </td> <td> GB</td></tr>
+		
 		</table>
     <hr>
 		<table>
@@ -28,10 +30,15 @@
 	<hr>
 	<script>
 	var calc = function() {
+		let numNodes = parseInt($("#numNodes").val());
+		let nodeManagerMemoryGB = parseInt($("#nodemanager-resource-memory-gb").val());
+		let nodeManagerMemoryMB = nodeManagerMemoryGB*1024
+		$("#nodemanager-resource-memory-mb").html(nodeManagerMemoryMB);
+		
 		let numMappers = parseInt($("#numMappers").val());
 		let numKVPairs = parseInt($("#numKVPairs").val());
 		let keySize = parseInt($("#keySize").val());
-		let numNodes = parseInt($("#numNodes").val());
+		
 		let numExecutors = parseInt($("#num-executors").val());
 		let memoryOverheadGB = parseInt($("#executor-memoryOverhead").val());
 		
@@ -44,13 +51,9 @@
 		$("#totalCacheSize").html(totalCacheSizeGB.toFixed(3));
 		$("#nodeCacheSize").html(nodeCacheSizeGB.toFixed(3));
 		
-		let executorMemory = totalCacheSize/numExecutors;
-		let executorMemoryGB = executorMemory/1073741824
+		let executorMemoryGB = nodeManagerMemoryGB/(numExecutors/numNodes) + memoryOverheadGB;
 		
 		$("#executor-memory").html(executorMemoryGB.toFixed(3));
-		
-		let nodeMemory = (executorMemoryGB + memoryOverheadGB) * (numExecutors/numNodes)
-		$("#nodeMemory").html(nodeMemory.toFixed(3));
 	};
 	$("input").change(function() {
 		calc();

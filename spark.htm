@@ -10,20 +10,20 @@
     <h1>Spark Caculator</h1>
 	<hr>
 		<table>
-		<tr><td align="right" width="160"> numNodes: </td><td> <input id="numNodes" value="12"> </td><td></td></tr>
-		<tr><td align="right" width="160"> --num-executors: </td><td> <input id="num-executors" value="800"> </td><td></td></tr>
-		<tr><td align="right" width="160"> executor.memoryOverhead: </td><td> <input id="executor-memoryOverhead" value="2"> </td><td>GB</td></tr>
-		<tr><td align="right" width="160"> --executor-memory: </td><td> <span id="executor-memory"  style="background-color: #EEEEEE"></span> </td> <td> GB, Formula: totalCacheSize/num-executors</td></tr>
-		<tr><td align="right" width="160"> nodeMemory: </td><td> <span id="nodeMemory"  style="background-color: #EEEEEE"></span> </td> <td> GB, Formula: (--executor-memory + executor.memoryOverhead) * ((--num-executors)/numNodes)</td></tr>
+		<tr><td align="right" width="300"> numNodes: </td><td> <input id="numNodes" value="12"> </td><td></td></tr>
+		<tr><td align="right" width="300"> --num-executors: </td><td> <input id="num-executors" value="800"> </td><td></td></tr>
+		<tr><td align="right" width="300"> executor.memoryOverhead: </td><td> <input id="executor-memoryOverhead" value="2"> </td><td>GB</td></tr>
+		<tr><td align="right" width="300"> --executor-memory: </td><td> <span id="executor-memory"  style="background-color: #EEEEEE"></span> </td> <td> GB, Formula: totalCacheSize/num-executors</td></tr>
+		<tr><td align="right" width="300"> nodeMemory: </td><td> <span id="nodeMemory"  style="background-color: #EEEEEE"></span> </td> <td> GB, Formula: (--executor-memory + executor.memoryOverhead) * ((--num-executors)/numNodes)</td></tr>
 		</table>
     <hr>
 		<table>
-		<tr><td align="right" width="160"> numMappers: </td><td> <input id="numMappers" value="5000"> </td><td></td></tr>
-		<tr><td align="right" width="160"> numKVPairs: </td><td> <input id="numKVPairs" value="25000"> </td><td></td></tr>
-		<tr><td align="right" width="160"> KeySize: </td><td> <input id="KeySize" value="4500"> </td><td></td></tr>
-		<tr><td align="right" width="160"> totalCacheSize: </td><td style="background-color: #EEEEEE"> <span id="totalCacheSize"></span> </td><td> GB, Formula: numMappers * numKVPairs * (4 + KeySize)</td></tr>
-		<tr><td align="right" width="160"> nodeCacheSize: </td><td style="background-color: #EEEEEE"> <span id="nodeCacheSize"></span> </td><td> GB, Formula: numMappers * numKVPairs * (4 + KeySize)/numNodes</td></tr>
-		<tr><td align="right" width="160"> numReducers: </td><td> <input id="numReducers" value="5000"> </td><td></td></tr>
+		<tr><td align="right" width="300"> numMappers: </td><td> <input id="numMappers" value="5000"> </td><td></td></tr>
+		<tr><td align="right" width="300"> numKVPairs: </td><td> <input id="numKVPairs" value="25000"> </td><td></td></tr>
+		<tr><td align="right" width="300"> KeySize: </td><td> <input id="KeySize" value="4500"> </td><td></td></tr>
+		<tr><td align="right" width="300"> totalCacheSize: </td><td style="background-color: #EEEEEE"> <span id="totalCacheSize"></span> </td><td> GB, Formula: numMappers * numKVPairs * (4 + KeySize)</td></tr>
+		<tr><td align="right" width="300"> nodeCacheSize: </td><td style="background-color: #EEEEEE"> <span id="nodeCacheSize"></span> </td><td> GB, Formula: numMappers * numKVPairs * (4 + KeySize)/numNodes</td></tr>
+		<tr><td align="right" width="300"> numReducers: </td><td> <input id="numReducers" value="5000"> </td><td></td></tr>
 		</table>
 	<hr>
 	<script>

@@ -1,37 +1,37 @@
 <html>
   <head>
-    <title>Home</title>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <title>Bit Mask</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   </head>
   <body style="margin:4; padding:4">
     <h1>Bit Mask</h1>
     <div><input type="text" id="mask" value="0x0" style="width:800px;height:25px;background-color:#ccccff" readonly> </input></div>
-	<div id="harts"></div>
+    <div id="harts"></div>
     <script>
-	    for(var x = 0; x < 256; x++) {
-			if (x > 0 && x%16 == 0) {
-				$("#harts").append("<br>");
-			}
-			$("#harts").append("<input type='button' name='hart' style='height:50px;width:50px;background-color:#eeeeee' mask='unset' value='" + x + "'></input>");
-	    }
-		$("[name='hart']").click(function() {
-			if($(this).attr("mask") == "unset") {
-				$(this).css("background-color", "#00cc00");
-				$(this).attr("mask", "set");
-			} else {
-				$(this).css("background-color", "#eeeeee");
-				$(this).attr("mask", "unset");
-			}
-			var mask_val = BigInt(0n)
-			$("[name='hart']").each(function() {
-				if($(this).attr("mask") == "set") {
-				one = BigInt(1n)
-				mov = BigInt($(this).val())
-				mask_val += (one<<mov)
-				}
-			});
-			$("#mask").val("0x" + mask_val.toString(16));
-		});
+        for(var x = 0; x < 256; x++) {
+            if (x > 0 && x%16 == 0) {
+                $("#harts").append("<br>");
+            }
+            $("#harts").append("<input type='button' name='hart' style='height:50px;width:50px;background-color:#eeeeee' mask='unset' value='" + x + "'></input>");
+        }
+        $("[name='hart']").click(function() {
+            if($(this).attr("mask") == "unset") {
+                $(this).css("background-color", "#00cc00");
+                $(this).attr("mask", "set");
+            } else {
+                $(this).css("background-color", "#eeeeee");
+                $(this).attr("mask", "unset");
+            }
+            var mask_val = BigInt(0n)
+            $("[name='hart']").each(function() {
+                if($(this).attr("mask") == "set") {
+                one = BigInt(1n)
+                mov = BigInt($(this).val())
+                mask_val += (one<<mov)
+                }
+            });
+            $("#mask").val("0x" + mask_val.toString(16));
+        });
     </script>
   </body>
 </html>

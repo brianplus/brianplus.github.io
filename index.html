@@ -14,7 +14,7 @@
 			}
 			$("#harts").append("<input type='button' name='hart' style='height:50px;width:50px;background-color:#eeeeee' mask='unset' value='" + x + "'></input>");
 	    }
-		$("[name='hart']").click(function(){
+		$("[name='hart']").click(function() {
 			if($(this).attr("mask") == "unset") {
 				$(this).css("background-color", "#00cc00");
 				$(this).attr("mask", "set");
@@ -23,7 +23,7 @@
 				$(this).attr("mask", "unset");
 			}
 			var mask_val = BigInt(0n)
-			$("[name='hart']").each(function(){
+			$("[name='hart']").each(function() {
 				if($(this).attr("mask") == "set") {
 				one = BigInt(1n)
 				mov = BigInt($(this).val())

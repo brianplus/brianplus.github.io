@@ -1,18 +1,18 @@
 <html>
   <head>
-    <title>Bit Mask</title>
+    <title>Home</title>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   </head>
   <body style="margin:4; padding:4">
     <h1>Bit Mask</h1>
-    <div><input type="text" id="mask" value="0x0" style="width:800px;height:25px;background-color:#ccccff" readonly> </input></div>
+    <div><input type="text" id="mask" value="0x0" style="width:800px;height:36px;background-color:#ccccff;font-size:20px" readonly> </input></div>
     <div id="harts"></div>
     <script>
         for(var x = 0; x < 256; x++) {
             if (x > 0 && x%16 == 0) {
                 $("#harts").append("<br>");
             }
-            $("#harts").append("<input type='button' name='hart' style='height:50px;width:50px;background-color:#eeeeee' mask='unset' value='" + x + "'></input>");
+            $("#harts").append("<input type='button' name='hart' style='height:50px;width:50px;background-color:#eeeeee;font-size:16px' mask='unset' value='" + x + "'></input>");
         }
         $("[name='hart']").click(function() {
             if($(this).attr("mask") == "unset") {

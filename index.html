@@ -10,10 +10,11 @@
     <script>
         for(var x = 0; x < 256; x++) {
             if (x > 0 && x%16 == 0) {
-                $("#harts").append("<br>");
+                $("#harts").append("<input type='button' name='core' style='height:50px;width:100px;background-color:#eeffee;font-size:16px' mask='unselall' group='" + (parseInt(x/16)  - 1) + "' value='Group #" + parseInt(x/16) + "'></input><br>");
             }
-            $("#harts").append("<input type='button' name='hart' style='height:50px;width:50px;background-color:#eeeeee;font-size:16px' mask='unset' value='" + x + "'></input>");
+            $("#harts").append("<input type='button' name='hart' style='height:50px;width:50px;background-color:#eeeeee;font-size:16px' mask='unset' groupBy='" + parseInt(x/16) + "' value='" + x + "'></input>");
         }
+		$("#harts").append("<input type='button' name='core' style='height:50px;width:100px;background-color:#eeffee;font-size:16px' mask='unselall' group='" + (parseInt(x/16)  - 1) + "' value='Group #" + parseInt(x/16) + "'></input><br>");
         $("[name='hart']").click(function() {
             if($(this).attr("mask") == "unset") {
                 $(this).css("background-color", "#00cc00");
@@ -21,6 +22,32 @@
             } else {
                 $(this).css("background-color", "#eeeeee");
                 $(this).attr("mask", "unset");
+            }
+            var mask_val = BigInt(0n)
+            $("[name='hart']").each(function() {
+                if($(this).attr("mask") == "set") {
+                one = BigInt(1n)
+                mov = BigInt($(this).val())
+                mask_val += (one<<mov)
+                }
+            });
+            $("#mask").val("0x" + mask_val.toString(16));
+        });
+		$("[name='core']").click(function() {
+            if($(this).attr("mask") == "unselall") {
+                $(this).css("background-color", "#00cccc");
+                $(this).attr("mask", "selall");
+				$("[groupBy='" + $(this).attr("group") + "']").each(function() {
+					$(this).css("background-color", "#00cc00");
+					$(this).attr("mask", "set");
+				});
+            } else {
+                $(this).css("background-color", "#eeffee");
+                $(this).attr("mask", "unselall");
+				$("[groupBy='" + $(this).attr("group") + "']").each(function() {
+					$(this).css("background-color", "#eeeeee");
+					$(this).attr("mask", "unset");
+				});
             }
             var mask_val = BigInt(0n)
             $("[name='hart']").each(function() {
